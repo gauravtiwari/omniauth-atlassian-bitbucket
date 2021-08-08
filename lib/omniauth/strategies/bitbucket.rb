@@ -7,7 +7,6 @@ module OmniAuth
   module Strategies
     class Bitbucket < OmniAuth::Strategies::OAuth2
       EMAIL = "email"
-      ACCOUNT = "account"
 
       option :client_options,
              site: "https://bitbucket.org",
@@ -18,7 +17,6 @@ module OmniAuth
         super.tap do |params|
           scope = params[:scope].to_s.split(/\s+/)
           scope << EMAIL unless scope.include?(EMAIL)
-          scope << ACCOUNT unless scope.include?(ACCOUNT)
           params[:scope] = scope.join(" ")
         end
       end
